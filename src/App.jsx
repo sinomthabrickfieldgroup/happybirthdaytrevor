@@ -42,12 +42,12 @@ const TASKS = [
     text: 'Migrate parking system to blockchain',
     note: 'Reverted after 4 hours. Net productivity: neutral.',
   },
-  {
-    status: 'blocked',
-    badge: 'Blocked',
-    text: 'Achieve work-life balance',
-    note: 'Blocked by: everything.',
-  },
+  // {
+  //   status: 'blocked',
+  //   badge: 'Blocked',
+  //   text: 'Achieve work-life balance',
+  //   note: 'Blocked by: everything.',
+  // },
 ]
 
 function Stars() {
@@ -184,6 +184,7 @@ function Modal({ onClose }) {
         <div className="memo-meta">
           TO: <span>Trevor Jacobs</span> &nbsp;·&nbsp;
           DATE: <span>{new Date().toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' })}</span> &nbsp;·&nbsp;
+          <br />
           RE: <span>Upcoming Work (abridged)</span>
         </div>
 
