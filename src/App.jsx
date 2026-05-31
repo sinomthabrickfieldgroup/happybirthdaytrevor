@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
+import { FiX, FiDownload } from 'react-icons/fi'
+import { BsCheckCircleFill, BsClockFill, BsXCircleFill } from 'react-icons/bs'
+import { RiCakeLine, RiEmotionHappyLine, RiGiftLine, RiSparkling2Line } from 'react-icons/ri'
 import './index.css'
 
 const TASKS = [
@@ -174,7 +177,7 @@ function Modal({ onClose }) {
   return (
     <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
       <div className="modal">
-        <button className="btn-close" onClick={onClose}>✕</button>
+        <button className="btn-close" onClick={onClose}><FiX /></button>
         <div className="modal-stamp">Confidential</div>
 
         <h2>Q2 Sprint Plan</h2>
@@ -187,7 +190,12 @@ function Modal({ onClose }) {
         <ul className="task-list">
           {TASKS.map((t, i) => (
             <li key={i} className={`task-item ${t.status}`}>
-              <span className="task-badge">{t.badge}</span>
+              <span className="task-badge">
+                {t.status === 'done' && <BsCheckCircleFill />}
+                {t.status === 'in-progress' && <BsClockFill />}
+                {t.status === 'blocked' && <BsXCircleFill />}
+                {t.badge}
+              </span>
               <div>
                 <div className="task-text">{t.text}</div>
                 <div className="task-note">{t.note}</div>
@@ -202,13 +210,13 @@ function Modal({ onClose }) {
             href="#"
             onClick={e => {
               e.preventDefault()
-              alert("You'll need to drop in the real report URL/file here 👋")
+              alert("You'll need to drop in the real report URL/file here")
             }}
           >
-            📄 Download actual progress report
+            <FiDownload /> Download actual progress report
           </a> */}
           <div className="modal-from">
-            <strong>From:</strong> Engineering Dept (1 person) &nbsp;·&nbsp; Happy birthday, Trevor 🎂
+            <strong>From:</strong> Engineering Dept (1 person) &nbsp;·&nbsp; Happy birthday, Trevor <RiCakeLine className="inline-icon" />
           </div>
         </div>
       </div>
@@ -249,8 +257,8 @@ export default function App() {
       <Stars />
 
       <h1 className="heading">
-        🎉 Happy Birthday, Trevor!
-        <span className="from">from your favourite (and only) engineer 😉</span>
+        <RiSparkling2Line className="heading-icon" /> Happy Birthday, Trevor!
+        <span className="from">from your favourite (and only) engineer <RiEmotionHappyLine className="inline-icon" /></span>
       </h1>
 
       <div className="trevor-wrap">
@@ -258,7 +266,7 @@ export default function App() {
       </div>
 
       <div className="gift-area">
-        <span className="gift-label">{phase === 'idle' ? 'A gift awaits…' : phase === 'streaming' ? 'Opening…' : '🎁'}</span>
+        <span className="gift-label">{phase === 'idle' ? 'A gift awaits…' : phase === 'streaming' ? 'Opening…' : <RiGiftLine />}</span>
         <button
           className="gift-btn"
           onClick={handleGiftClick}
